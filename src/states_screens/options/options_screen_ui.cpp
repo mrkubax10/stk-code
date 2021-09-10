@@ -151,7 +151,7 @@ void OptionsScreenUI::loadedFromFile()
     }
 
     // Setup camera spinner
-    SpinnerWidget* camera_preset = getWidget<GUIEngine::SpinnerWidget>("camera_preset");
+    GUIEngine::SpinnerWidget* camera_preset = getWidget<GUIEngine::SpinnerWidget>("camera_preset");
     assert( camera_preset != NULL );
 
     camera_preset->m_properties[PROP_WRAP_AROUND] = "true";
@@ -180,7 +180,6 @@ void OptionsScreenUI::loadedFromFile()
     });
 
     m_custom_settings = getWidget<ButtonWidget>("custom_camera");
-
 }   // loadedFromFile
 
 // -----------------------------------------------------------------------------
