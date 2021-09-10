@@ -151,7 +151,7 @@ void OptionsScreenUI::loadedFromFile()
     }
 
     // Setup camera spinner
-    GUIEngine::SpinnerWidget* camera_preset = getWidget<GUIEngine::SpinnerWidget>("camera_preset");
+    SpinnerWidget* camera_preset = getWidget<GUIEngine::SpinnerWidget>("camera_preset");
     assert( camera_preset != NULL );
 
     camera_preset->m_properties[PROP_WRAP_AROUND] = "true";
@@ -178,6 +178,8 @@ void OptionsScreenUI::loadedFromFile()
         m_reload_option->m_focus_name = "font_size";
         m_reload_option->m_focus_right = right;
     });
+
+    m_custom_settings = getWidget<ButtonWidget>("custom_camera");
 
 }   // loadedFromFile
 
@@ -359,6 +361,7 @@ void OptionsScreenUI::init()
 
     camera_preset->setValue(UserConfigParams::m_camera_present); // use the saved camera
     updateCameraPresetSpinner();
+    m_custom_settings->setActive(camera_preset->getValue() == 0);
 }   // init
 
 void OptionsScreenUI::updateCamera()
@@ -543,6 +546,11 @@ void OptionsScreenUI::eventCallback(Widget* widget, const std::string& name, con
             UserConfigParams::m_camera_backward_distance = UserConfigParams::m_saved_camera_backward_distance;
             UserConfigParams::m_camera_backward_up_angle = UserConfigParams::m_saved_camera_backward_up_angle;
             UserConfigParams::m_reverse_look_use_soccer_cam = UserConfigParams::m_saved_reverse_look_use_soccer_cam;
+            m_custom_settings->setActive(true);
+        }
+        if (i > 0)
+        {
+            m_custom_settings->setActive(false);
         }
         updateCamera();
     }

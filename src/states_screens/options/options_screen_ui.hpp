@@ -24,7 +24,11 @@
 
 #include "guiengine/screen.hpp"
 
-namespace GUIEngine { class Widget; }
+namespace GUIEngine
+{
+    class Widget;
+    class ButtonWidget;
+}
 
 /**
   * \brief Graphics options screen
@@ -46,6 +50,8 @@ class OptionsScreenUI : public GUIEngine::Screen, public GUIEngine::ScreenSingle
     std::map<core::stringw, std::string> m_skins;
 
     void updateCamera();
+
+    GUIEngine::ButtonWidget* m_custom_settings;
 public:
     friend class GUIEngine::ScreenSingleton<OptionsScreenUI>;
 
